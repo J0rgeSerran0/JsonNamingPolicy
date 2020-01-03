@@ -21,3 +21,20 @@ var json = JsonSerializer.Serialize(person, options);
 ```csharp
 {"first_name":"Jorge","birthday":"2020-01-03T20:00:59.6991482Z","my_job_city":"Madrid"}
 ```
+
+## JsonKebabCaseNamingPolicy
+This class creates a policy to change the name properties of a JSON into KebabCase (*kebab-case*) used in some programming languages and APIs.
+
+### Use
+
+```csharp
+var options = new JsonSerializerOptions() { PropertyNamingPolicy = new JsonKebabCaseNamingPolicy() };
+var person = new Person() { FirstName = "Jorge", Birthday = DateTime.UtcNow, MyJobCity = "Madrid" };
+var json = JsonSerializer.Serialize(person, options);
+```
+
+### Result
+
+```csharp
+{"first-name":"Jorge","birthday":"2020-01-03T20:00:59.6991482Z","my-job-city":"Madrid"}
+```
