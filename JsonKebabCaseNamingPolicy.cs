@@ -28,12 +28,8 @@ namespace System.Text.Json
 
             if (positions.Count() != nameLength)
             {
-                var position = 0;
-
-                foreach (var item in positions.Reverse())
+                foreach (var position in positions.Reverse())
                 {
-                    position = Convert.ToInt32(item);
-
                     if (position != 0)
                     {
                         if (name.Substring(position - 1, 1) == "-" &&
