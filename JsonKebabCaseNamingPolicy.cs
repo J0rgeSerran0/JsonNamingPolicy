@@ -1,52 +1,79 @@
 namespace System.Text.Json
 {
-    public class JsonSnakeCaseNamingPolicy : JsonNamingPolicy
+    public class JsonKebabCaseNamingPolicy : JsonNamingPolicy
     {
+        private readonly string _separator = "-";
+    
         public override string ConvertName(string name)
         {
-            if (name == null) return String.Empty;
-            
-            name = name.Trim();
-            if (String.IsNullOrEmpty(name)) return String.Empty;
+            if (String.IsNullOrEmpty(name) || String.IsNullOrWhiteSpace(name)) return String.Empty;
 
-            // Upper Case Characters
-            var nameArray = name.ToArray();
-            var uppers = (from character in Enumerable.Range(0, name.Length) where Char.IsUpper(nameArray[character]) select character);
-            name = TranformName(ref uppers, name);
+            ReadOnlySpan<char> spanName = name.Trim();
 
-            // White Space Characters
-            nameArray = name.ToArray();
-            var whiteSpaces = (from character in Enumerable.Range(0, name.Length) where Char.IsWhiteSpace(nameArray[character]) select character);
-            name = TranformName(ref whiteSpaces, name);
+            var stringBuilder = new StringBuilder();
+            var addCharacter = true;
 
-            return name.ToLower();
-        }
+            var isPreviousSpace = false;
+            var isPreviousSeparator = false;
+            var isCurrentSpace = false;
+            var isNextLower = false;
+            var isNextUpper = false;
+            var isNextSpace = false;
 
-        private string TranformName(ref IEnumerable<int> positions, string name)
-        {
-            var nameLength = name.Length;
-
-            if (positions.Count() != nameLength)
+            for (int position = 0; position < spanName.Length; position++)
             {
-                foreach (var position in positions.Reverse())
+                if (position != 0)
                 {
-                    if (position != 0)
+                    isCurrentSpace = spanName[position] == 32;
+                    isPreviousSpace = spanName[position - 1] == 32;
+                    isPreviousSeparator = spanName[position - 1] == 95;
+
+                    if (position + 1 != spanName.Length)
                     {
-                        if (name.Substring(position - 1, 1) == "-" &&
-                            name.Substring(position, 1) == " ")
-                            name = $"{name.Substring(0, position).Trim()}{name.Substring(position + 1).Trim()}";
-                        else if (position + 1 != nameLength &&
-                            name.Substring(position - 1, 1).Any(char.IsUpper) &&
-                            name.Substring(position + 1, 1).Any(char.IsLower))
-                            name = $"{name.Substring(0, position).Trim()}-{name.Substring(position).Trim()}";
-                        else if (!name.Substring(position - 1, 1).Any(char.IsUpper) &&
-                            name.Substring(position - 1, 1) != "-")
-                            name = $"{name.Substring(0, position).Trim()}-{name.Substring(position).Trim()}";
+                        isNextLower = spanName[position + 1] > 96 && spanName[position + 1] < 123;
+                        isNextUpper = spanName[position + 1] > 64 && spanName[position + 1] < 91;
+                        isNextSpace = spanName[position + 1] == 32;
+                    }
+
+                    if ((isCurrentSpace) &&
+                        ((isPreviousSpace) || 
+                        (isPreviousSeparator) || 
+                        (isNextUpper) || 
+                        (isNextSpace)))
+                        addCharacter = false;
+                    else
+                    {
+                        var isCurrentUpper = spanName[position] > 64 && spanName[position] < 91;
+                        var isPreviousLower = spanName[position - 1] > 96 && spanName[position - 1] < 123;
+                        var isPreviousNumber = spanName[position - 1] > 47 && spanName[position - 1] < 58;
+
+                        if ((isCurrentUpper) &&
+                        ((isPreviousLower) || 
+                        (isPreviousNumber) || 
+                        (isNextLower) || 
+                        (isNextSpace) || 
+                        (isNextLower && !isPreviousSpace)))
+                            stringBuilder.Append(_separator);
+                        else
+                        {
+                            if ((isCurrentSpace && 
+                                !isPreviousSpace && 
+                                !isNextSpace))
+                            {
+                                stringBuilder.Append(_separator);
+                                addCharacter = false;
+                            }
+                        }
                     }
                 }
+
+                if (addCharacter)
+                    stringBuilder.Append(spanName[position]);
+                else
+                    addCharacter = true;
             }
 
-            return name;
+            return stringBuilder.ToString().ToLower();
         }
     }
 }
