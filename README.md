@@ -23,7 +23,7 @@ var json = JsonSerializer.Serialize(person, options);
 ```
 
 ## JsonKebabCaseNamingPolicy
-This class creates a policy to change the name properties of a JSON into KebabCase (*kebab-case*) used in some programming languages and APIs.
+This class creates a policy to change the name properties of a JSON into KebabCase (*kebab-case*).
 
 ### Use
 
