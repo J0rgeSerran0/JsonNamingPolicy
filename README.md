@@ -1,3 +1,8 @@
+![Namespace](https://img.shields.io/static/v1?label=Namespace&message=System.Text.Json&color=green)
+![JSON Naming Policies](https://img.shields.io/static/v1?label=JSON%20Naming%20Policies&message=kebab-case%20and%20snake_case&color=9cf)
+![Compatibility](https://img.shields.io/static/v1?label=Compatibility&message=.NET%20Core%203.1%20and%20.NET%205&color=success)
+
+
 # JsonNamingPolicy
 Naming policies for [System.Text.Json](https://docs.microsoft.com/en-us/dotnet/api/system.text.json?view=netcore-3.1)
 
