@@ -10,7 +10,7 @@ This GitHub repo contains classes to change the name properties of a JSON into d
 
 > **Update Jul 23 2021**
 > 
-> Microsoft has move the implementation of kebab-case and snake_case to .NET 7
+> Microsoft has moved the implementation of kebab-case and snake_case to .NET 7
 >
 > ![IMAGE](images/20210723.jpg)
 
