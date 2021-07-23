@@ -13,6 +13,8 @@ This GitHub repo contains classes to change the name properties of a JSON into d
 > Microsoft has moved the implementation of kebab-case and snake_case to .NET 7
 >
 > ![IMAGE](images/20210723.jpg)
+>
+> Additional information [here](https://github.com/dotnet/runtime/issues/782)
 
 ## JsonSnakeCaseNamingPolicy
 This class creates a policy to change the name properties of a JSON into SnakeCase (*snake_case*) used in some programming languages and APIs.
