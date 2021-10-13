@@ -16,6 +16,19 @@ This GitHub repo contains classes to change the name properties of a JSON into d
 >
 > Additional information [here](https://github.com/dotnet/runtime/issues/782)
 
+
+## NuGet Package
+
+> **Update Oct 13 2021 - NuGet Package**
+> **NickJohn** published 6 months ago, a NuGet Package with the code I share here.
+> 
+> You can incorporate the code easily inside of your developments.
+> 
+> You will finde this NuGet Package **[here](https://www.nuget.org/packages/JorgeSerrano.Json.JsonSnakeCaseNamingPolicy)**
+>  
+> Thanks a lot **NickeJohn**
+> 
+
 ## JsonSnakeCaseNamingPolicy
 This class creates a policy to change the name properties of a JSON into SnakeCase (*snake_case*) used in some programming languages and APIs.
 
