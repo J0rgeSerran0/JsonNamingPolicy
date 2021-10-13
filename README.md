@@ -24,7 +24,7 @@ This GitHub repo contains classes to change the name properties of a JSON into d
 > 
 > You can incorporate the code easily inside of your developments.
 > 
-> You will finde this NuGet Package **[here](https://www.nuget.org/packages/JorgeSerrano.Json.JsonSnakeCaseNamingPolicy)**
+> You will find this NuGet Package **[here](https://www.nuget.org/packages/JorgeSerrano.Json.JsonSnakeCaseNamingPolicy)**
 >  
 > Thanks a lot **NickeJohn**
 > 
