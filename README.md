@@ -8,6 +8,14 @@ Naming policies for [System.Text.Json](https://docs.microsoft.com/en-us/dotnet/a
 
 This GitHub repo contains classes to change the name properties of a JSON into different naming conventions.
 
+> **Update April 5 2022**
+> 
+> Unlikely it will be added in .NET 7
+> 
+![afbeelding](https://user-images.githubusercontent.com/9028898/187986014-8d87f1f2-4e05-45fb-a256-6a8a802c0486.png)
+
+
+
 > **Update Jul 23 2021**
 > 
 > Microsoft has moved the implementation of kebab-case and snake_case to .NET 7
